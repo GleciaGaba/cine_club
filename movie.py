@@ -6,6 +6,14 @@ CUR_DIR = os.path.dirname(__file__)
 DATA_FILE = os.path.join(CUR_DIR, "data", "movies.json")
 
 
+def get_movies():
+    with open(DATA_FILE, "r") as f:
+        movies_title = json.load(f)
+    movies = [Movie(movie_title) for movie_title in movies_title]
+
+    return movies
+
+
 class Movie:
     def __init__(self, title):
         self.title = title.title()
@@ -43,5 +51,5 @@ class Movie:
 
 
 if __name__ == '__main__':
-    m = Movie("Cube")
-    m.remove_movies()
+    movies = get_movies()
+    print(movies)
